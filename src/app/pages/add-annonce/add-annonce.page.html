@@ -1,0 +1,117 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <!-- <ion-title>loginscreen</ion-title>-->
+   </ion-toolbar>
+   <ion-buttons class="retour"  slot="start">
+     <ion-back-button defaultHref="/home"></ion-back-button>
+   </ion-buttons>
+</ion-header>
+
+<ion-content class="bg-color">
+  <ion-card class="ion-no-margin">
+    <ion-img src="assets/images/header.png"></ion-img>
+    </ion-card>
+      <ion-card-title>
+        Ajouter une annonce immobilière
+      </ion-card-title>
+    <ion-card-content>
+      <form   [formGroup]="validationFormAnnonce" (ngSubmit)="AddAnnonce(validationFormAnnonce.valid)">
+      <div class="wrapform">
+
+      <ion-item>
+        <ion-icon name="business-outline"></ion-icon>
+        <ion-input name="title" type="text" formControlName="title" placeholder="Titre" required> 
+        </ion-input>
+      </ion-item>
+
+      <div>
+        <ng-container *ngFor="let validation of validationAnnonceMessage.title">
+          <div class="error_message" *ngIf="validationFormAnnonce.get('title')?.hasError(validation.type) && (validationFormAnnonce.get('title')?.dirty || validationFormAnnonce.get('title')?.touched)">
+            {{validation.message}}
+        </div>
+    </ng-container>
+    </div>
+
+
+      <ion-item>
+        <ion-icon name="chatbox-ellipses-outline"></ion-icon>
+        <ion-input name="description" type="text" formControlName="description" placeholder="Description" required> 
+        </ion-input>
+      </ion-item>
+
+      <div>
+        <ng-container *ngFor="let validation of validationAnnonceMessage.description">
+          <div class="error_message" *ngIf="validationFormAnnonce.get('description')?.hasError(validation.type) && (validationFormAnnonce.get('email')?.dirty || validationFormAnnonce.get('description')?.touched)">
+            {{validation.message}}
+      </div>
+    </ng-container>
+    </div>
+
+    <ion-item>
+      <ion-icon name="layers-outline"></ion-icon>
+      <ion-label>Catégorie</ion-label>
+      <ion-select formControlName="category" placeholder="Sélectionne une catégorie">
+        <ion-select-option value="choix1">Vente immobilière</ion-select-option>
+        <ion-select-option value="choix2">Location immobilière</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+
+    <div>
+      <ng-container *ngFor="let validation of validationAnnonceMessage.category">
+        <div class="error_message" *ngIf="validationFormAnnonce.get('category')?.hasError(validation.type) && (validationFormAnnonce.get('category')?.dirty || validationFormAnnonce.get('category')?.touched)">
+          {{validation.message}}
+    </div>
+  </ng-container>
+  </div>
+
+      <ion-item>
+        <ion-icon name="cash-outline"></ion-icon>
+        <ion-input name="price" type="number" formControlName="price" placeholder="Prix">
+        </ion-input>
+      </ion-item>
+
+      <div>
+        <ng-container *ngFor="let validation of validationAnnonceMessage.price">
+          <div class="error_message" *ngIf="validationFormAnnonce.get('price')?.hasError(validation.type) && (validationFormAnnonce.get('price')?.dirty || validationFormAnnonce.get('price')?.touched)">
+            {{validation.message}}
+          </div>
+    </ng-container>
+    </div>
+
+      <ion-item>
+        <ion-icon name="location-outline"></ion-icon>
+        <ion-input name="location" type="text"  formControlName="location"  placeholder="Localisation">
+        </ion-input>
+      </ion-item>
+    
+      <div>
+        <ng-container *ngFor="let validation of validationAnnonceMessage.location">
+          <div class="error_message" *ngIf="validationFormAnnonce.get('location')?.hasError(validation.type) && (validationFormAnnonce.get('location')?.dirty || validationFormAnnonce.get('location')?.touched)">
+          {{validation.message}}
+          </div>
+        </ng-container>
+      </div>
+
+      <ion-item>
+        <ion-icon name="camera-outline"></ion-icon>
+        <ion-input name="image" type="text"  formControlName="image"  placeholder="Image">
+        </ion-input>
+      </ion-item>
+    
+      <div>
+        <ng-container *ngFor="let validation of validationAnnonceMessage.image">
+          <div class="error_message" *ngIf="validationFormAnnonce.get('image')?.hasError(validation.type) && (validationFormAnnonce.get('image')?.dirty || validationFormAnnonce.get('image')?.touched)">
+          {{validation.message}}
+          </div>
+        </ng-container>
+      </div>
+  
+    <div class="sign-btn-wrap">
+      <ion-button  shape="round" fill="solid" class="sign-btn" [disabled]="!validationFormAnnonce.valid">Ajouter</ion-button>
+    </div>
+
+   </div>
+  </form>
+    </ion-card-content>
+</ion-content>
